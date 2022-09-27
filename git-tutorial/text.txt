@@ -1,0 +1,6 @@
+
+copy con text.txt
+e
+
+end
+loss
