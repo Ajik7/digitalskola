@@ -1,0 +1,25 @@
+CREATE TABLE musisi
+( id_musisi INT NOT NULL PRIMARY KEY,
+ nama_musisi VARCHAR(20),
+ tipe_musisi ENUM('solo','duo','band')
+     );
+
+CREATE TABLE album
+( id_album INT NOT NULL PRIMARY KEY,
+ id_musisi INT,
+ nama_album VARCHAR(20),
+ CONSTRAINT fk_musisi
+    FOREIGN KEY (id_musisi)
+    REFERENCES musisi(id_musisi)
+    ON DELETE CASCADE
+     );
+
+CREATE TABLE lagu
+( id_lagu INT NOT NULL PRIMARY KEY,
+ id_album INT,
+ judul_lagu VARCHAR(20),
+ CONSTRAINT fk_album
+    FOREIGN KEY (id_album)
+    REFERENCES album(id_album)
+    ON UPDATE SET NULL
+     );
