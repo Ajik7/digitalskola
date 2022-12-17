@@ -10,10 +10,19 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import mean_absolute_error
 
 # Create spark session
+# Create spark session
 if __name__ == "__main__":
-    spark = SparkSession.builder\
-    .appname("ml")\
-    .getOrCreate()
+    # initiate spark
+    try:
+        spark = SparkSession.builder\
+            .master("local")\
+            .config("spark.jars","/usr/local/spark/resources/mysql-connector-java-8.0.29.jar")\
+            .appName("MySql").getOrCreate()\
+            
+            
+    except Exception as e:
+        print("LOG ERROR SPARK SESSION")
+        print(f"{e}")
 
 #parameter
 postgre_server = "localhost"

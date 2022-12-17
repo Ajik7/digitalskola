@@ -2,16 +2,25 @@ import pyspark
 from pyspark.sql import SparkSession
 
 # Create spark session
+# Create spark session
 if __name__ == "__main__":
-    spark = SparkSession.builder\
-    .appname("postgre")\
-    .getOrCreate()
+    # initiate spark
+    try:
+        spark = SparkSession.builder\
+            .master("local")\
+            .config("spark.jars","/usr/local/spark/resources/mysql-connector-java-8.0.29.jar")\
+            .appName("postgre").getOrCreate()\
+            
+            
+    except Exception as e:
+        print("LOG ERROR SPARK SESSION")
+        print(f"{e}")
 
 #Parameter mysql
 mysql_driver = "com.mysql.jdbc.Driver"
 mysql_url = f"jdbc:mysql://localhost:3306/mysql"
 mysql_user = "root"
-mysql_password="anypassword"
+mysql_password="mysql"
 
 #Parameter postgre
 postgre_server = "localhost"
